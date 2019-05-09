@@ -1,0 +1,66 @@
+﻿
+@{
+//if (Session["IdUsu"] == null)
+//{
+//    Response.Redirect("~/Menu/Index");
+//}
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href=@Url.Content("~/Content/MenuPrincipalCss.css") rel="stylesheet" type="text/css" />
+    <title>Menú principal</title>
+
+</head>
+
+<body>
+    <header>
+
+
+        <div class="Titulo">
+            <h2 >Sistema Web</h2>
+        </div>
+
+        <div class="navegacion">
+
+            <nav>
+                <ul class="Menu">
+                    <li><a href="~/Menu/Index">Inicio</a></li>
+                    <li><a href="~/Menu/TareaSimple">Tareas simples</a></li>
+                    <li><a href="~/Menu/TareaSimplePerzonalizada">Tareas personalizadas</a></li>
+                    <li><a href="~/Menu/Cuenta">Cuenta</a></li>
+                    <li><a href="~/Menu/Compartir">Compartir</a></li>
+                    <li><a href="~/Menu/CerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="panelCentral">
+
+            <div class="contenido">
+                <h2>Bienvenido(a) @ViewBag.Usuario</h2>
+            </div>
+
+            <center>
+                <input type="button" value="Nueba tarea" class="boton" />
+                <input type="button" value="Ver mis tareas" class="boton" />
+                <input type="button" value="Cuenta" class="boton" />
+                <input type="button" value="Compartir" class="boton" />
+            </center>
+           
+        </div>
+
+
+</header>
+</body>
+</html>
+
+
+
+
+
+

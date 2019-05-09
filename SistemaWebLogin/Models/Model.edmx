@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaWebLoginModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NuevaTareaPersonalizada">
+          <Key>
+            <PropertyRef Name="IdTarPer" />
+          </Key>
+          <Property Name="IdTarPer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FecTar" Type="smalldatetime" />
+          <Property Name="DesTar" Type="nvarchar(max)" />
+          <Property Name="DesTar2" Type="nvarchar(max)" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="IdTip" Type="int" />
+          <Property Name="TitTar" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="NuevaTareaSimple">
+          <Key>
+            <PropertyRef Name="IdTarSim" />
+          </Key>
+          <Property Name="IdTarSim" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FecTar" Type="smalldatetime" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="IdTip" Type="int" />
+          <Property Name="DesTar" Type="nvarchar(max)" />
+          <Property Name="TitTar" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="TipoTarea">
+          <Key>
+            <PropertyRef Name="IdTip" />
+          </Key>
+          <Property Name="IdTip" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomTip" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsu" />
+          </Key>
+          <Property Name="IdUsu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomUsu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ApeUsu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Usu" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="50" />
+          <Property Name="EmaUsu" Type="nvarchar" MaxLength="50" />
+          <Property Name="DirUsu" Type="nvarchar" MaxLength="50" />
+          <Property Name="TelUsu" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__NuevaTare__IdTip__4F7CD00D">
+          <End Role="TipoTarea" Type="Self.TipoTarea" Multiplicity="0..1" />
+          <End Role="NuevaTareaSimple" Type="Self.NuevaTareaSimple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarea">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="NuevaTareaSimple">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdTip__52593CB8">
+          <End Role="TipoTarea" Type="Self.TipoTarea" Multiplicity="0..1" />
+          <End Role="NuevaTareaPersonalizada" Type="Self.NuevaTareaPersonalizada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarea">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="NuevaTareaPersonalizada">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdUsu__5070F446">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="NuevaTareaSimple" Type="Self.NuevaTareaSimple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="NuevaTareaSimple">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdUsu__534D60F1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="NuevaTareaPersonalizada" Type="Self.NuevaTareaPersonalizada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="NuevaTareaPersonalizada">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaWebLoginModelStoreContainer">
+          <EntitySet Name="NuevaTareaPersonalizada" EntityType="Self.NuevaTareaPersonalizada" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NuevaTareaSimple" EntityType="Self.NuevaTareaSimple" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoTarea" EntityType="Self.TipoTarea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__NuevaTare__IdTip__4F7CD00D" Association="Self.FK__NuevaTare__IdTip__4F7CD00D">
+            <End Role="TipoTarea" EntitySet="TipoTarea" />
+            <End Role="NuevaTareaSimple" EntitySet="NuevaTareaSimple" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdTip__52593CB8" Association="Self.FK__NuevaTare__IdTip__52593CB8">
+            <End Role="TipoTarea" EntitySet="TipoTarea" />
+            <End Role="NuevaTareaPersonalizada" EntitySet="NuevaTareaPersonalizada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdUsu__5070F446" Association="Self.FK__NuevaTare__IdUsu__5070F446">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="NuevaTareaSimple" EntitySet="NuevaTareaSimple" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdUsu__534D60F1" Association="Self.FK__NuevaTare__IdUsu__534D60F1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="NuevaTareaPersonalizada" EntitySet="NuevaTareaPersonalizada" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaWebLoginModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="NuevaTareaPersonalizada">
+          <Key>
+            <PropertyRef Name="IdTarPer" />
+          </Key>
+          <Property Name="IdTarPer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FecTar" Type="DateTime" Precision="0" />
+          <Property Name="DesTar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DesTar2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdUsu" Type="Int32" />
+          <Property Name="IdTip" Type="Int32" />
+          <Property Name="TitTar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TipoTarea" Relationship="Self.FK__NuevaTare__IdTip__52593CB8" FromRole="NuevaTareaPersonalizada" ToRole="TipoTarea" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__NuevaTare__IdUsu__534D60F1" FromRole="NuevaTareaPersonalizada" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="NuevaTareaSimple">
+          <Key>
+            <PropertyRef Name="IdTarSim" />
+          </Key>
+          <Property Name="IdTarSim" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FecTar" Type="DateTime" Precision="0" />
+          <Property Name="IdUsu" Type="Int32" />
+          <Property Name="IdTip" Type="Int32" />
+          <Property Name="DesTar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitTar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TipoTarea" Relationship="Self.FK__NuevaTare__IdTip__4F7CD00D" FromRole="NuevaTareaSimple" ToRole="TipoTarea" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__NuevaTare__IdUsu__5070F446" FromRole="NuevaTareaSimple" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="TipoTarea">
+          <Key>
+            <PropertyRef Name="IdTip" />
+          </Key>
+          <Property Name="IdTip" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomTip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NuevaTareaPersonalizada" Relationship="Self.FK__NuevaTare__IdTip__52593CB8" FromRole="TipoTarea" ToRole="NuevaTareaPersonalizada" />
+          <NavigationProperty Name="NuevaTareaSimple" Relationship="Self.FK__NuevaTare__IdTip__4F7CD00D" FromRole="TipoTarea" ToRole="NuevaTareaSimple" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsu" />
+          </Key>
+          <Property Name="IdUsu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomUsu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ApeUsu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Usu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmaUsu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DirUsu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TelUsu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="NuevaTareaPersonalizada" Relationship="Self.FK__NuevaTare__IdUsu__534D60F1" FromRole="Usuario" ToRole="NuevaTareaPersonalizada" />
+          <NavigationProperty Name="NuevaTareaSimple" Relationship="Self.FK__NuevaTare__IdUsu__5070F446" FromRole="Usuario" ToRole="NuevaTareaSimple" />
+        </EntityType>
+        <Association Name="FK__NuevaTare__IdTip__52593CB8">
+          <End Role="TipoTarea" Type="Self.TipoTarea" Multiplicity="0..1" />
+          <End Role="NuevaTareaPersonalizada" Type="Self.NuevaTareaPersonalizada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarea">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="NuevaTareaPersonalizada">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdUsu__534D60F1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="NuevaTareaPersonalizada" Type="Self.NuevaTareaPersonalizada" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="NuevaTareaPersonalizada">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdTip__4F7CD00D">
+          <End Role="TipoTarea" Type="Self.TipoTarea" Multiplicity="0..1" />
+          <End Role="NuevaTareaSimple" Type="Self.NuevaTareaSimple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoTarea">
+              <PropertyRef Name="IdTip" />
+            </Principal>
+            <Dependent Role="NuevaTareaSimple">
+              <PropertyRef Name="IdTip" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NuevaTare__IdUsu__5070F446">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="NuevaTareaSimple" Type="Self.NuevaTareaSimple" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="NuevaTareaSimple">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistWebLoginEnti" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="NuevaTareaPersonalizada" EntityType="Self.NuevaTareaPersonalizada" />
+          <EntitySet Name="NuevaTareaSimple" EntityType="Self.NuevaTareaSimple" />
+          <EntitySet Name="TipoTarea" EntityType="Self.TipoTarea" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__NuevaTare__IdTip__52593CB8" Association="Self.FK__NuevaTare__IdTip__52593CB8">
+            <End Role="TipoTarea" EntitySet="TipoTarea" />
+            <End Role="NuevaTareaPersonalizada" EntitySet="NuevaTareaPersonalizada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdUsu__534D60F1" Association="Self.FK__NuevaTare__IdUsu__534D60F1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="NuevaTareaPersonalizada" EntitySet="NuevaTareaPersonalizada" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdTip__4F7CD00D" Association="Self.FK__NuevaTare__IdTip__4F7CD00D">
+            <End Role="TipoTarea" EntitySet="TipoTarea" />
+            <End Role="NuevaTareaSimple" EntitySet="NuevaTareaSimple" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NuevaTare__IdUsu__5070F446" Association="Self.FK__NuevaTare__IdUsu__5070F446">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="NuevaTareaSimple" EntitySet="NuevaTareaSimple" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaWebLoginModelStoreContainer" CdmEntityContainer="SistWebLoginEnti">
+          <EntitySetMapping Name="NuevaTareaPersonalizada">
+            <EntityTypeMapping TypeName="SistemaWebLoginModel.NuevaTareaPersonalizada">
+              <MappingFragment StoreEntitySet="NuevaTareaPersonalizada">
+                <ScalarProperty Name="IdTarPer" ColumnName="IdTarPer" />
+                <ScalarProperty Name="FecTar" ColumnName="FecTar" />
+                <ScalarProperty Name="DesTar" ColumnName="DesTar" />
+                <ScalarProperty Name="DesTar2" ColumnName="DesTar2" />
+                <ScalarProperty Name="IdUsu" ColumnName="IdUsu" />
+                <ScalarProperty Name="IdTip" ColumnName="IdTip" />
+                <ScalarProperty Name="TitTar" ColumnName="TitTar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NuevaTareaSimple">
+            <EntityTypeMapping TypeName="SistemaWebLoginModel.NuevaTareaSimple">
+              <MappingFragment StoreEntitySet="NuevaTareaSimple">
+                <ScalarProperty Name="IdTarSim" ColumnName="IdTarSim" />
+                <ScalarProperty Name="FecTar" ColumnName="FecTar" />
+                <ScalarProperty Name="IdUsu" ColumnName="IdUsu" />
+                <ScalarProperty Name="IdTip" ColumnName="IdTip" />
+                <ScalarProperty Name="DesTar" ColumnName="DesTar" />
+                <ScalarProperty Name="TitTar" ColumnName="TitTar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoTarea">
+            <EntityTypeMapping TypeName="SistemaWebLoginModel.TipoTarea">
+              <MappingFragment StoreEntitySet="TipoTarea">
+                <ScalarProperty Name="IdTip" ColumnName="IdTip" />
+                <ScalarProperty Name="NomTip" ColumnName="NomTip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SistemaWebLoginModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsu" ColumnName="IdUsu" />
+                <ScalarProperty Name="NomUsu" ColumnName="NomUsu" />
+                <ScalarProperty Name="ApeUsu" ColumnName="ApeUsu" />
+                <ScalarProperty Name="Usu" ColumnName="Usu" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="EmaUsu" ColumnName="EmaUsu" />
+                <ScalarProperty Name="DirUsu" ColumnName="DirUsu" />
+                <ScalarProperty Name="TelUsu" ColumnName="TelUsu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

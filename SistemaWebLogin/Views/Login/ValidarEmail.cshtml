@@ -1,0 +1,51 @@
+﻿@model SistemaWebLogin.Models.Usuario
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="~/Content/RecuperarPassCss.css" rel="stylesheet" />
+    <title>Validar email</title>
+</head>
+
+<body>
+
+    <div class="recPass_container">
+        <br>
+        <h2 class="recPass_titulo">Validar correo electrónico</h2><br>
+
+        @using (Html.BeginForm("ValidarEmailUsu", "Login", FormMethod.Get, new { @class = "recPass_form" }))
+        {
+            <div class="recPass_img">
+                <img style="width: 100px" src="~/Img/actualizar.PNG" alt="Imagen">
+            </div>
+
+            @Html.TextBoxFor(model => model.EmaUsu, new { @placeholder = "ingrese su correo electrónico", required = "required", type = "text", @style = "width:500px" ,id="IdEmai"})
+            
+            <br />
+
+            <label style="color:salmon">@ViewBag.MensajeError</label>
+
+            <div class="btn_form">
+
+                <a href="/Login/CambiarPass">
+                    <input class="btn_submit" type="submit" value="Aceptar">
+                </a>
+                
+
+                <a href="/Login/Index">
+                    <input class="btn_submit" type="button" value="Volver">
+                </a>
+                
+            </div>
+        }
+
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+
+    document.getElementById("IdEmai").focus();
+
+</script>

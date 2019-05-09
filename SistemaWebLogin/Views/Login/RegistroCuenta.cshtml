@@ -1,0 +1,42 @@
+﻿
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="~/Content/RegistroCuentaCss.css" rel="stylesheet" />
+    <title>Registro de cuenta</title>
+</head>
+
+<body>
+
+    <div class="registro_container">
+
+        <div class="registro_top">
+            <h2 class="registro_titulo">Registro de cuenta</h2><br>
+            <img class="registro_img" src="~/Img/recupera.PNG" alt="Imagen">
+        </div>
+
+        @using (Html.BeginForm("RegistroCuenta", "Login", FormMethod.Post, new { @class = "registro_form" }))
+        {
+
+            @Html.TextBoxFor(new { @placeholder = " Nombre", required = "required" })
+            @Html.TextBoxFor(model => model.ApeUsu, new { @placeholder = " Email", required = "required" })
+            @Html.TextBoxFor(model => model.Usu, new { @placeholder = " Dirección", required = "required" })
+            @Html.TextBoxFor(model => model.EmaUsu, new { @placeholder = " Dirección", required = "required" })
+            @Html.TextBoxFor(model => model.DirUsu, new { @placeholder = " Dirección", required = "required" })
+            @Html.TextBoxFor(model => model.Contrasena, new { @placeholder = " Contraseña", required = "required", type = "password" })
+
+            <center>
+                <input class="btn_submit" type="submit" value="Registrar">
+
+                <a href="/Login/Index">
+                    <input class="btn_submit" type="button" value="Volver">
+                </a>
+            </center>
+        }
+    </div>
+
+</body>
+</html>

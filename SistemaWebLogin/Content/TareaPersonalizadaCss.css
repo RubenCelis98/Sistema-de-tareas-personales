@@ -1,0 +1,115 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Verdana;
+}
+
+header {
+    width: 100%;
+}
+
+.Titulo {
+    padding: 20px;
+    margin-left: 80px
+}
+
+.LogoTipo h2 {
+    font-family: Verdana;
+    color: #ffd800;
+}
+
+.navegacion {
+    width: 100%;
+    background: #ffd800;
+}
+
+    .navegacion nav {
+        width: 90%;
+        margin: auto;
+    }
+
+.btn_Menu {
+    display: none;
+}
+
+.Menu {
+    list-style: none;
+    width: 100%;
+}
+
+    .Menu li {
+        display: inline-block;
+    }
+
+        .Menu li a {
+            display: block;
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+            .Menu li a:hover {
+                background: #808080;
+            }
+
+.panelCentral {
+    margin: 5px;
+    width: auto;
+    height: 600px;
+    background-color: rgb(219, 218, 218);
+}
+
+.contenido {
+    padding: 30px;
+}
+
+.boton {
+    width: 90%;
+    height: 9%;
+    border-radius: 50px;
+    background-color: gold;
+    margin-bottom: 5%;
+    color: gray;
+}
+
+.frm_TareaPeronalizada {
+    width: 500px;
+    height: 520px;
+    background-color: white;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    padding: 25px;
+    transform: translate(-50%,-50%);
+    margin: 10px;
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+.Titulo_Tarea {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.tarea {
+    width: 300px;
+    font-family: Verdana;
+    margin-bottom: 10px;
+}
+
+.tarea_Des {
+    width: 430px;
+    height: 100px;
+    border-radius: 5%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.btnGua {
+    margin-left: 90px;
+    height: 30px;
+    background-color: darkgrey;
+}

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SistemaCalculoPersonalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaCalculoPersonal.dbo.Calculo_Cliente' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Calculo_Cliente">
+          <Property Name="IdCli" Type="int" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="Mon" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DetMon" Type="nvarchar" MaxLength="50" />
+          <Property Name="FecCal" Type="date" />
+          <Property Name="FecReg" Type="smalldatetime" />
+          <Property Name="OtrDet" Type="nvarchar" MaxLength="500" />
+        </EntityType>-->
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCli" />
+          </Key>
+          <Property Name="IdCli" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ape" Type="nvarchar" MaxLength="50" />
+          <Property Name="Edad" Type="nvarchar" MaxLength="50" />
+          <Property Name="FecNac" Type="date" />
+          <Property Name="Ema" Type="nvarchar" MaxLength="50" />
+          <Property Name="Dir" Type="nvarchar" MaxLength="300" />
+          <Property Name="FecReg" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Detalle_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliDet" />
+          </Key>
+          <Property Name="IdCliDet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCli" Type="int" />
+          <Property Name="Sue" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="NumHij" Type="int" />
+          <Property Name="EstCiv" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaCalculoPersonal.dbo.Egreso' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Egreso">
+          <Property Name="IdCli" Type="int" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="Monto" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DetEgr" Type="nvarchar" MaxLength="50" />
+          <Property Name="FecEgr" Type="date" />
+          <Property Name="FecReg" Type="smalldatetime" />
+        </EntityType>-->
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'SistemaCalculoPersonal.dbo.Ingreso' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Ingreso">
+          <Property Name="IdCli" Type="int" />
+          <Property Name="IdUsu" Type="int" />
+          <Property Name="Mon" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DetIng" Type="nvarchar" MaxLength="50" />
+          <Property Name="FecIng" Type="date" />
+          <Property Name="FecReg" Type="smalldatetime" />
+        </EntityType>-->
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsu" />
+          </Key>
+          <Property Name="IdUsu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ape" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ema" Type="nvarchar" MaxLength="50" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="50" />
+          <Property Name="FecReg" Type="smalldatetime" />
+        </EntityType>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Calculo_Cliente', pero no se encuentra la tabla.
+        <Association Name="FK__Calculo_C__IdCli__440B1D61" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Calculo_Cliente', pero no se encuentra la tabla.
+        <Association Name="FK__Calculo_C__IdUsu__44FF419A" />-->
+        <Association Name="FK__Cliente__IdUsu__398D8EEE">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_C__IdCli__3C69FB99">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="Detalle_Cliente">
+              <PropertyRef Name="IdCli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Egreso', pero no se encuentra la tabla.
+        <Association Name="FK__Egreso__IdCli__412EB0B6" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Egreso', pero no se encuentra la tabla.
+        <Association Name="FK__Egreso__IdUsu__4222D4EF" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Ingreso', pero no se encuentra la tabla.
+        <Association Name="FK__Ingreso__IdCli__3E52440B" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'SistemaCalculoPersonal.dbo.Ingreso', pero no se encuentra la tabla.
+        <Association Name="FK__Ingreso__IdUsu__3F466844" />-->
+        <EntityContainer Name="SistemaCalculoPersonalModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Cliente" EntityType="Self.Detalle_Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Cliente__IdUsu__398D8EEE" Association="Self.FK__Cliente__IdUsu__398D8EEE">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_C__IdCli__3C69FB99" Association="Self.FK__Detalle_C__IdCli__3C69FB99">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SistemaCalculoPersonalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="IdCli" />
+          </Key>
+          <Property Name="IdCli" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsu" Type="Int32" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ape" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Edad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FecNac" Type="DateTime" Precision="0" />
+          <Property Name="Ema" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Dir" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="FecReg" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__Cliente__IdUsu__398D8EEE" FromRole="Cliente" ToRole="Usuario" />
+          <NavigationProperty Name="Detalle_Cliente" Relationship="Self.FK__Detalle_C__IdCli__3C69FB99" FromRole="Cliente" ToRole="Detalle_Cliente" />
+        </EntityType>
+        <EntityType Name="Detalle_Cliente">
+          <Key>
+            <PropertyRef Name="IdCliDet" />
+          </Key>
+          <Property Name="IdCliDet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCli" Type="Int32" />
+          <Property Name="Sue" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="NumHij" Type="Int32" />
+          <Property Name="EstCiv" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Detalle_C__IdCli__3C69FB99" FromRole="Detalle_Cliente" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="IdUsu" />
+          </Key>
+          <Property Name="IdUsu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ape" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ema" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FecReg" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__IdUsu__398D8EEE" FromRole="Usuario" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FK__Cliente__IdUsu__398D8EEE">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="IdUsu" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="IdUsu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Detalle_C__IdCli__3C69FB99">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Detalle_Cliente" Type="Self.Detalle_Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="IdCli" />
+            </Principal>
+            <Dependent Role="Detalle_Cliente">
+              <PropertyRef Name="IdCli" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SistemaCalculoPersonalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Detalle_Cliente" EntityType="Self.Detalle_Cliente" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <AssociationSet Name="FK__Cliente__IdUsu__398D8EEE" Association="Self.FK__Cliente__IdUsu__398D8EEE">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Detalle_C__IdCli__3C69FB99" Association="Self.FK__Detalle_C__IdCli__3C69FB99">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Detalle_Cliente" EntitySet="Detalle_Cliente" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SistemaCalculoPersonalModelStoreContainer" CdmEntityContainer="SistemaCalculoPersonalEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="SistemaCalculoPersonalModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="IdCli" ColumnName="IdCli" />
+                <ScalarProperty Name="IdUsu" ColumnName="IdUsu" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Ape" ColumnName="Ape" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FecNac" ColumnName="FecNac" />
+                <ScalarProperty Name="Ema" ColumnName="Ema" />
+                <ScalarProperty Name="Dir" ColumnName="Dir" />
+                <ScalarProperty Name="FecReg" ColumnName="FecReg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Cliente">
+            <EntityTypeMapping TypeName="SistemaCalculoPersonalModel.Detalle_Cliente">
+              <MappingFragment StoreEntitySet="Detalle_Cliente">
+                <ScalarProperty Name="IdCliDet" ColumnName="IdCliDet" />
+                <ScalarProperty Name="IdCli" ColumnName="IdCli" />
+                <ScalarProperty Name="Sue" ColumnName="Sue" />
+                <ScalarProperty Name="NumHij" ColumnName="NumHij" />
+                <ScalarProperty Name="EstCiv" ColumnName="EstCiv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SistemaCalculoPersonalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="SistemaCalculoPersonalModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="IdUsu" ColumnName="IdUsu" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Ape" ColumnName="Ape" />
+                <ScalarProperty Name="Ema" ColumnName="Ema" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="FecReg" ColumnName="FecReg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

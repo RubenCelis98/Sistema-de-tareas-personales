@@ -1,0 +1,46 @@
+﻿
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="~/Content/LoginCss.css" rel="stylesheet" />
+    <title>Login</title>
+</head>
+
+<body>
+
+    <div class="login_container">
+
+        <div class="login_top">
+            <h2 class="login_titulo">InfoApp</h2><br>
+            <img class="login_img" src="~/Img/Carrito.PNG" alt="Imagen">
+        </div>
+        
+        @using (Html.BeginForm("ValidarLogin", "Login", FormMethod.Get, new { @class = "login_form" }))
+        {
+            @Html.TextBoxFor(model => model.EmaUsu ,new {@placeholder = "Email", required = "required", type = "text",id="Id_Email"})
+            @Html.TextBoxFor(model => model.Contrasena, new { @placeholder = "Contraseña", required = "required" ,type = "password"})
+           
+            <label style="color:salmon">@ViewBag.MensajeError</label>
+           
+            <input class="btn_submit" type="submit" id="IdTexto" value="Aceptar">
+
+            <a class="form_recover" href="/Login/ValidarEmail">¿Olvidaste la contraseña?</a>
+            <a class="form_recover" href="/Login/RegistroCuenta">Registrate</a>
+        }
+       
+    </div>
+
+</body>
+</html>
+
+<script type="text/javascript">
+
+    //obtener el foto al cargar la vista Index
+    document.getElementById("Id_Email").focus();
+        
+
+</script>

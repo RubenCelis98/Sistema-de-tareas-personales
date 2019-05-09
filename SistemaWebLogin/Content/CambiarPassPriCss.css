@@ -1,0 +1,108 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: Verdana;
+}
+
+header {
+    width: 100%;
+}
+
+.Titulo {
+    padding: 20px;
+    margin-left: 80px
+}
+
+
+
+.navegacion {
+    width: 100%;
+    background: #ffd800;
+}
+
+    .navegacion nav {
+        width: 90%;
+        margin: auto;
+    }
+
+.Menu {
+    list-style: none;
+    width: 100%;
+}
+
+    .Menu li {
+        display: inline-block;
+    }
+
+        .Menu li a {
+            display: block;
+            padding: 20px;
+            color: white;
+            text-decoration: none;
+        }
+
+            .Menu li a:hover {
+                background: #808080;
+            }
+
+.panelCentral {
+    margin: 5px;
+    width: auto;
+    height: 600px;
+    background-color: rgb(219, 218, 218);
+}
+
+.contenido {
+    padding: 30px;
+}
+
+.frm_CamPassPri {
+    width: 700px;
+    height: 220px;
+    background-color: white;
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%,-50%);
+    margin: 10px;
+    padding-right: 0;
+    padding-left: 30px;
+}
+
+.Titulo_Tarea {
+    text-align: center;
+    padding-top: 150px;
+}
+
+.lbl_Class {
+    font-family: Tahoma;
+    margin-bottom: 0px;
+}
+
+.lbl_Dato {
+    color: blue;
+}
+
+.btnGua {
+    height: 30px;
+    background-color: darkgrey;
+    margin-top: 0px;
+}
+
+.enlace {
+    margin-left: 600px;
+    margin-top: -15px;
+}
+.contraStyle{
+    width:650px;
+}
+.lblTex_Class{
+    margin-top:15px;
+}
+.btnAce_Class{
+    margin-top:20px;
+}

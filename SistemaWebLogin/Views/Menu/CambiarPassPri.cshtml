@@ -1,0 +1,71 @@
+﻿@model  SistemaWebLogin.Models.Usuario
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href=@Url.Content("~/Content/CambiarPassPriCss.css") rel="stylesheet" type="text/css" />
+    <title>Cambiar contraseña</title>
+
+</head>
+
+<body>
+    <header>
+
+        <div class="Titulo">
+            <h2>Sistema Web</h2>
+        </div>
+
+        <div class="navegacion">
+
+            <nav>
+                <ul class="Menu">
+                    <li><a href="~/Menu/Index">Inicio</a></li>
+                    <li><a href="~/Menu/TareaSimple">Tareas simples</a></li>
+                    <li><a href="~/Menu/TareaSimplePerzonalizada">Tareas personalizadas</a></li>
+                    <li><a href="~/Menu/Cuenta">Cuenta</a></li>
+                    <li><a href="~/Menu/Compartir">Compartir</a></li>
+                    <li><a href="~/Menu/CerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="panelCentral">
+
+            <div class="Titulo_Tarea">
+                <h2>Cambiar contraseña</h2>
+            </div>
+
+            @using (Html.BeginForm("Menu_ActPass", "Menu", FormMethod.Post, new { @class = "frm_CamPassPri" }))
+            {
+
+                <div>
+                    <label>Ingrese su contraseña actual</label><br />
+                    @Html.TextBoxFor(model => model.Contrasena, new { @class = "contraStyle", required = "required", type = "password" })
+                    <h5 style="color:red">@ViewBag.ErrorPass</h5>
+                </div>
+
+                <div class="lblTex_Class">
+                    <label>Ingrese nueva contraseña</label><br />
+                    @Html.TextBoxFor(model => model.NuevaContrasena, new { @class = "contraStyle", required = "required", type = "password" })
+                </div>
+
+                <div class="lblTex_Class">
+                    <label>Confirmar nueva contraseña</label>
+                    @Html.TextBoxFor(model => model.ConContrasena, new { @class = "contraStyle", required = "required", type = "password" })<br />
+                    <h5 style="color:red">@ViewBag.ErrorPassNue</h5>
+                </div>
+
+                <div class="btnAce_Class">
+                    <input type="submit" value="Aceptar">
+                    <input type="button" value="Cancelar">
+                </div>
+            }
+
+        </div>
+    </header>
+</body>
+</html>

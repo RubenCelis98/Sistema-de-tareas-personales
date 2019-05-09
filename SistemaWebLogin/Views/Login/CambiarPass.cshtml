@@ -1,0 +1,56 @@
+﻿@model SistemaWebLogin.Models.Usuario
+
+@{
+    if (Session["IdUsu"] == null)
+    {
+        Response.Redirect("~/Menu/Index");
+    }
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="~/Content/CambiarPassCss.css" rel="stylesheet" />
+    <title>Cambiar contraseña</title>
+</head>
+
+<body>
+
+    <div class="camPass_container">
+        <br>
+        <h2 class="camPass_titulo">Cambiar contraseña</h2><br>
+
+        @using (Html.BeginForm("UpdatePass", "Login", FormMethod.Post, new { @class = "camPass_form" }))
+        {
+            <div class="camPass_img">
+                <img style="width: 100px" src="~/Img/actualizar.PNG" alt="Imagen">
+            </div>
+
+            @Html.TextBoxFor(model => model.Contrasena, new { @placeholder = "Contraseña", required = "required", type = "password", @style = "width:500px" })
+            @Html.TextBoxFor(model => model.ConContrasena, new { @placeholder = "Confirmar contraseña", required = "required", type = "password",  @style = "width:500px" })
+            
+            <br />
+
+            <label style="color:salmon">@ViewBag.MensajeError</label>
+
+            <div class="btn_form">
+
+                <input class="btn_submit" type="submit" value="Aceptar">
+
+                <a href="/Login/ValidarEmail">
+                    <input class="btn_submit" type="button" value="Volver">
+                </a>
+
+            </div>  
+
+            
+              
+           
+        }
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model  SistemaWebLogin.Models.Usuario
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href=@Url.Content("~/Content/CuentaCss.css") rel="stylesheet" type="text/css" />
+    <title>Cuenta</title>
+
+</head>
+
+<body>
+    <header>
+
+        <div class="Titulo">
+            <h2>Sistema Web</h2>
+        </div>
+
+        <div class="navegacion">
+
+            <nav>
+                <ul class="Menu">
+                    <li><a href="~/Menu/Index">Inicio</a></li>
+                    <li><a href="~/Menu/TareaSimple">Tareas simples</a></li>
+                    <li><a href="~/Menu/TareaSimplePerzonalizada">Tareas personalizadas</a></li>
+                    <li><a href="~/Menu/Cuenta">Cuenta</a></li>
+                    <li><a href="~/Menu/Compartir">Compartir</a></li>
+                    <li><a href="~/Menu/CerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="panelCentral">
+
+            <div class="Titulo_Tarea">
+                <h2>Mi cuenta</h2>
+            </div>
+
+            @using (Html.BeginForm("TareaSimpleGuardar", "Menu", FormMethod.Post, new { @class = "frm_Cuenta" }))
+            {
+
+                <h4 class=" lbl_Class">Nombre y apellido</h4>
+                <h4 class="lbl_Dato">@ViewBag.NomApe</h4> <br />
+
+                <h4 class=" lbl_Class">Cantidad de tareas simples</h4>
+                <h4 class="lbl_Dato">@ViewBag.CanRegSim</h4><br />
+
+                <h4 class=" lbl_Class">Cantidad de tareas personalizadas:</h4>
+                <h4 class="lbl_Dato">@ViewBag.CanRegPer</h4><br />
+
+                <h4 class=" lbl_Class">Correo electrónico</h4>
+                <h4 class="lbl_Dato">@ViewBag.Email</h4><br />
+
+
+                <a href="~/Menu/TareaSimpleGuardar"><input class="btnGua" type="submit" value=" Guardar "></a>
+                <a href="#"><input class="btnGua" type="submit" value=" Ver tareas "></a>
+
+                <div class="enlace" >
+                    <a href="~/Menu/CambiarPass">Cambiar contraseña</a>
+                </div>
+            }
+
+        </div>
+    </header>
+</body>
+</html>

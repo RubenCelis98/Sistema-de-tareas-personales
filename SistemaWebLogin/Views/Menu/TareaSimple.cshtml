@@ -1,0 +1,64 @@
+﻿@model  SistemaWebLogin.Models.NuevaTareaSimple
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href=@Url.Content("~/Content/MenuPrincipalCss.css") rel="stylesheet" type="text/css" />
+    <title>Tarea simple</title>
+
+</head>
+
+<body>
+    <header>
+
+        <div class="Titulo">
+            <h2>Sistema Web</h2>
+        </div>
+
+        <div class="navegacion">
+
+            <nav>
+                <ul class="Menu">
+                    <li><a href="~/Menu/Index">Inicio</a></li>
+                    <li><a href="~/Menu/TareaSimple">Tareas simples</a></li>
+                    <li><a href="~/Menu/TareaSimplePerzonalizada">Tareas personalizadas</a></li>
+                    <li><a href="~/Menu/Cuenta">Cuenta</a></li>
+                    <li><a href="~/Menu/Compartir">Compartir</a></li>
+                    <li><a href="~/Menu/CerrarSesion">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="panelCentral">
+            
+            <div class="Titulo_Tarea">
+                <h2>Nueva tarea simple</h2>
+            </div>
+           
+            @using (Html.BeginForm("TareaSimpleGuardar", "Menu", FormMethod.Post, new { @class = "frm_TareaSimple" }))
+            {
+                <label>Título de tarea:</label>
+                @Html.TextBoxFor(model => model.TitTar ,new { @class = "tarea" , required  = "required" ,type = "text"})
+
+                <label>Fecha de tarea:</label>
+                @Html.TextBoxFor(model => model.FecTar, new { @class = "tarea", required = "required", type = "date" })
+
+                <label>Tipo de tarea:</label>
+                @Html.DropDownListFor(model => model.IdTip,(SelectList)ViewBag.ItemList)<br /><br />
+                 
+                  
+                <label>Descripción de tarea:</label><br />
+                @Html.TextAreaFor(model => model.DesTar, new { @class = "tarea_Des", required = "required", type = "text" })
+
+                <a href="~/Menu/TareaSimpleGuardar"><input class="btnGua" type="submit" value=" Guardar "></a>
+                <a href="#"><input class="btnGua" type="submit" value=" Ver tareas "></a>
+            }
+           
+        </div>
+    </header>
+</body>
+</html>
